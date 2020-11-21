@@ -26,14 +26,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _onPressed(String op) {
-    final isActivate = _controllers.where((el) => el.isActive).toList();
+    final isActivate = _controllers
+        .where((el) => el.isActive && el.controller.text.isNotEmpty)
+        .toList();
     if (isActivate.length > 1) {
       int res = 0;
       final getValues = isActivate.map((e) {
-        if (e.controller.text.isNotEmpty)
-          return int.parse(e.controller.text);
-        else
-          return 0;
+        return int.parse(e.controller.text);
       }).toList();
       res = getValues[0];
       for (int i = 0; i < getValues.length - 1; i++) {
